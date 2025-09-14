@@ -1,0 +1,24 @@
+{
+  "title": "Generated schema for Root",
+  "type": "object",
+  "properties": {
+    "message": {
+      "type": "string"
+    },
+    "data": {
+      "type": "object",
+      "properties": {
+        "token": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "token"
+      ]
+    }
+  },
+  "required": [
+    "message",
+    "data"
+  ]
+}
