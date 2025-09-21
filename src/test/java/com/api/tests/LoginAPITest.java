@@ -43,8 +43,7 @@ public class LoginAPITest {
 		.time(Matchers.lessThan(1000L))
 		.and()
 		.body("message", Matchers.equalTo("Success"))
-		.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("responseSchema/loginResponseSchema.json"))
-		.extract().path("data.token");
+		.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("responseSchema/loginResponseSchema.json"));
 		
 		
 		
