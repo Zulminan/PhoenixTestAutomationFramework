@@ -1,5 +1,9 @@
 package com.api.tests;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.hamcrest.Matchers;
 import org.testng.annotations.Test;
 
@@ -12,6 +16,7 @@ import com.api.pojo.Problems;
 import com.api.utils.SpecUtil;
 
 import io.restassured.RestAssured;
+import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class CreateJobAPITest {
 	
@@ -24,17 +29,15 @@ public class CreateJobAPITest {
 		
 		CustomerAddress customerAddress = new CustomerAddress("401", "Orchid Apartment", "Punjabi Gali", "IndusInd Bank ATM ", "Okhla", "110025", "India", "Delhi");
 		
-		CustomerProduct customerProduct = new CustomerProduct("2025-04-06T18:30:00.000Z", "68941865683928", "68941865683928", "68941865683928", "2025-04-06T18:30:00.000Z", 1, 1);
+		CustomerProduct customerProduct = new CustomerProduct("2025-04-06T18:30:00.000Z", "86941365683924", "86941365683924", "86941365683924", "2025-04-06T18:30:00.000Z", 1, 1);
 		
 		Problems problems = new Problems(1, "Battery Issue");
 		
-		Problems[] problemsArray = new Problems[1];
+		List<Problems> problemsList = new ArrayList<Problems>();
 		
-		problemsArray[0] = problems;
+		problemsList.add(problems);
 		
-		CreateJobPayload createJobPayload = new CreateJobPayload(0, 2, 1, 1, customer, customerAddress, customerProduct,problemsArray);
-		
-		
+		CreateJobPayload createJobPayload = new CreateJobPayload(0, 2, 1, 1, customer, customerAddress, customerProduct,problemsList);
 		
 		
 		RestAssured.given()
@@ -43,9 +46,16 @@ public class CreateJobAPITest {
 		.post("/job/create")
 		.then()
 		.spec(SpecUtil.responseSpec_OK())
+		.and()
 		.log().all()
-		.body("message",Matchers.equalTo("Job created successfully. "));
-
+		.body("message",Matchers.equalTo("Job created successfully. "))
+		.and()
+		.body(JsonSchemaValidator.matchesJsonSchemaInClasspath("responseSchema"+File.separator+"createJobResponseSchema.json"))
+        .and()
+        .body("data.mst_service_location_id",Matchers.equalTo(1))
+		.and()
+		.body("data.job_number", Matchers.startsWith("JOB_"));
+        
 		
 	}
 
