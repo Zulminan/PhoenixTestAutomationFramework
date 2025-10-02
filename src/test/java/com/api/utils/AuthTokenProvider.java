@@ -5,7 +5,7 @@ import java.io.File;
 import org.hamcrest.Matchers;
 
 import com.api.constants.Role;
-import com.api.pojo.UserCredentials;
+import com.api.request.model.UserCredentials;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;

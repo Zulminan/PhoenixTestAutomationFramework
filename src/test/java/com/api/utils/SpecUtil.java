@@ -3,7 +3,7 @@ package com.api.utils;
 import org.hamcrest.Matchers;
 
 import com.api.constants.Role;
-import com.api.pojo.UserCredentials;
+import com.api.request.model.UserCredentials;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -87,6 +87,26 @@ public class SpecUtil {
 				   .log(LogDetail.METHOD)
 				   .log(LogDetail.HEADERS)
 				   .log(LogDetail.BODY)
+				   .build();
+				   
+				   return request;
+	}
+	
+	public static RequestSpecification requestSpecWithAuth(Role role, Object payload)
+	{
+		RequestSpecification request = new RequestSpecBuilder()
+				   .setBaseUri(ConfigManager.getProperty("BASE_URI"))
+				   .and()
+				   .setContentType(ContentType.JSON)
+				   .and()
+				   .setAccept(ContentType.JSON)
+				   .and()
+				   .addHeader("Authorization",AuthTokenProvider.getToken(role))
+				   .log(LogDetail.URI)
+				   .log(LogDetail.METHOD)
+				   .log(LogDetail.HEADERS)
+				   .log(LogDetail.BODY)
+				   .setBody(payload)
 				   .build();
 				   
 				   return request;
