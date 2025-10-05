@@ -18,9 +18,6 @@ public class ConfigManager {
 	private static String path = "config/config.properties";
 	
 	
-	
-	
-	
 	static
 	{
 		env = System.getProperty("env","qa");
@@ -63,17 +60,11 @@ public class ConfigManager {
 			
 			e.printStackTrace();
 		}
-		
-		
 	}
-	
 	
 	
 	public static String getProperty(String key)
 	{
-		
-		
-		
 		
 		return prop.getProperty(key);
 	}
