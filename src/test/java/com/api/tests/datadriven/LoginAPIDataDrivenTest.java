@@ -12,7 +12,7 @@ import com.dataproviders.api.bean.UserBean;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
 
-public class LoginAPIDataDriven {
+public class LoginAPIDataDrivenTest {
 	
 	
 	@Test(description="Verifying if login API is working for FD user",
