@@ -121,16 +121,33 @@ public static Iterator<CreateJobPayload> generateFakeCreateJobData(int count)
 	
 	private static List<Problems> generateFakeProblemsList() 
 	{
-        String fakeRemark = faker.lorem().sentence(5);
-		
-		int randomIndex = RANDOM.nextInt(VALID_PROBLEMS_ID.length);
+		int count = RANDOM.nextInt(3)+1;
 		
 		
-		Problems problems = new Problems(VALID_PROBLEMS_ID[randomIndex],fakeRemark);
+		
+		String fakeRemark;
+		
+		int randomIndex;
+		
+		Problems problems;
 		
 		List<Problems> problemList = new ArrayList<Problems>();
 		
-		problemList.add(problems);
+		for(int i=0;i<count;i++)
+		{
+			
+	        fakeRemark = faker.lorem().sentence(5);
+			
+			randomIndex = RANDOM.nextInt(VALID_PROBLEMS_ID.length);
+			
+			
+			problems = new Problems(VALID_PROBLEMS_ID[randomIndex],fakeRemark);
+			
+			
+			
+			problemList.add(problems);
+		}
+	
 		
 		return problemList;
 
