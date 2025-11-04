@@ -5,7 +5,6 @@
       <class name="com.api.tests.datadriven.LoginAPIDataDrivenTest"/>
       <class name="com.api.tests.datadriven.CreateJobAPIDataDrivenTest"/>
       <class name="com.api.tests.datadriven.CreateJobAPIFakeDataDrivenTest"/>
-     
     </classes>
   </test>
 </suite>
