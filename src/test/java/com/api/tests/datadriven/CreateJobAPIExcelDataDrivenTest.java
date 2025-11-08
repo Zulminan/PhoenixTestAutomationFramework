@@ -12,7 +12,7 @@ import com.api.utils.SpecUtil;
 import io.restassured.RestAssured;
 import io.restassured.module.jsv.JsonSchemaValidator;
 
-public class CreateJobAPIDataDrivenTest {
+public class CreateJobAPIExcelDataDrivenTest {
 	
 
 	
@@ -21,7 +21,7 @@ public class CreateJobAPIDataDrivenTest {
 	
 	
 	@Test(description="Verify if create job API is able to create Inwarranty jobs",groups= {"api","regression","datadriven","csv"},
-			dataProviderClass = com.dataproviders.DataProviderUtils.class,dataProvider="CreateJobAPIExcelDataProvider")
+			dataProviderClass = com.dataproviders.DataProviderUtils.class,dataProvider="CreateJobAPIDataProvider")
 	public void createJobAPITest(CreateJobPayload createJobPayload)
 	{
 		RestAssured.given()

@@ -21,12 +21,12 @@ public class ExcelReaderUtil2 {
 	public static <T>Iterator<T> loadTestData(String xlsxFileName,String sheetName, Class<T> clazz) throws IOException 
 	{
 		
-		InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream("testData"+File.separator+"PhoenixTestData.xlsx");
+		InputStream is = Thread.currentThread().getContextClassLoader().getResourceAsStream(xlsxFileName);
 		
 		XSSFWorkbook myWorkBook = new XSSFWorkbook(is);
 		
 		
-		XSSFSheet mySheet = myWorkBook.getSheet("LoginTestData");
+		XSSFSheet mySheet = myWorkBook.getSheet(sheetName);
 		
 		List<T> list = Poiji.fromExcel(mySheet, clazz);
 		
