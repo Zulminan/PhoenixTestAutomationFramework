@@ -71,8 +71,10 @@ public class DataProviderUtils {
 		return JsonReaderUtil.loadJSON("testData" + File.separator + "CreateJobAPIData.json", CreateJobPayload[].class);
 	}
 	
+	
+	
 	@DataProvider(name = "LoginAPIExcelDataProvider", parallel = true)
-	public static Iterator<UserCredentials> loginAPIExcelDataProvider() throws IOException {
-		return ExcelReaderUtil2.loadTestData();
+	public static Iterator<UserBean> loginAPIExcelDataProvider() throws IOException {
+		return ExcelReaderUtil2.loadTestData("testData/PhoenixTestData.xlsx", "LoginTestData", UserBean.class);
 	}
 }
