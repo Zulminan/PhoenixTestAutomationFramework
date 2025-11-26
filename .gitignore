@@ -1,2 +1,6 @@
 /target/
-/test-output/
+/test-output/ 
+src/.DS_Store
+src/test/.DS_Store
+src/test/resources/.DS_Store
+src/test/resources/testData/.DS_Store
