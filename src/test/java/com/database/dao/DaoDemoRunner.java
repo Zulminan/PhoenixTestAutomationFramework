@@ -1,14 +1,14 @@
 package com.database.dao;
 
-import com.database.model.CustomerProductDBModel;
+import com.database.model.JobHeadModel;
 
 public class DaoDemoRunner {
 
 	public static void main(String[] args) {
 		
-	 	CustomerProductDBModel customerProductDBModel = CustomerProductDao.getProductInfoFromDB(115821);
+	 	JobHeadModel jobHeadModel = JobHeadDao.getDataFromJobHead(116975);
 		
-		System.out.println(customerProductDBModel);
+		System.out.println(jobHeadModel);
 
 	}
 

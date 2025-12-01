@@ -27,9 +27,11 @@ import com.api.utils.SpecUtil;
 import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
 import com.database.dao.CustomerProductDao;
+import com.database.dao.JobHeadDao;
 import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
 import com.database.model.CustomerProductDBModel;
+import com.database.model.JobHeadModel;
 
 import io.restassured.RestAssured;
 import io.restassured.module.jsv.JsonSchemaValidator;
@@ -53,7 +55,7 @@ public class CreateJobAPIWithDBValidationTest {
 		
 		customerAddress = new CustomerAddress("401", "Orchid Apartment", "Punjabi Gali", "IndusInd Bank ATM ", "Okhla", "110025", "India", "Delhi");
 		
-		customerProduct = new CustomerProduct(DateTimeUtil.getTimeWithDaysAgo(10), "36991378230814", "36991378230814", "36991378230814", DateTimeUtil.getTimeWithDaysAgo(10), 
+		customerProduct = new CustomerProduct(DateTimeUtil.getTimeWithDaysAgo(10), "36991373330814", "36991373330814", "36991373330814", DateTimeUtil.getTimeWithDaysAgo(10), 
 				Product.NEXUS_2.getCode(), Model.NEXUS_2_BLUE.getCode());
 		
 		Problems problems = new Problems(Problem.SMARTPHONE_IS_RUNNING_SLOW.getCode(), "Battery Issue");
@@ -119,6 +121,13 @@ public class CreateJobAPIWithDBValidationTest {
 		Assert.assertEquals(customerProductDBData.getImei2(), customerProduct.imei2());
 		Assert.assertEquals(customerProductDBData.getPopurl(), customerProduct.popurl());	
 		Assert.assertEquals(customerProductDBData.getMst_model_id(), customerProduct.mst_model_id());
+		
+		JobHeadModel jobHeadDataFromDB = JobHeadDao.getDataFromJobHead(customerId);
+		
+		Assert.assertEquals(jobHeadDataFromDB.getMst_oem_id(), createJobPayload.mst_oem_id());
+		Assert.assertEquals(jobHeadDataFromDB.getMst_service_location_id(), createJobPayload.mst_service_location_id());
+		Assert.assertEquals(jobHeadDataFromDB.getMst_warrenty_status_id(), createJobPayload.mst_warrenty_status_id());
+		Assert.assertEquals(jobHeadDataFromDB.getMst_platform_id(), createJobPayload.mst_platform_id());
 		
 		
 		

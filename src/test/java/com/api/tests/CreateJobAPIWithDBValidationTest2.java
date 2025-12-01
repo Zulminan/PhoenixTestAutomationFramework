@@ -28,9 +28,11 @@ import com.api.utils.SpecUtil;
 import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
 import com.database.dao.CustomerProductDao;
+import com.database.dao.JobHeadDao;
 import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
 import com.database.model.CustomerProductDBModel;
+import com.database.model.JobHeadModel;
 
 import io.restassured.RestAssured;
 import io.restassured.module.jsv.JsonSchemaValidator;
@@ -121,6 +123,13 @@ public class CreateJobAPIWithDBValidationTest2 {
 		Assert.assertEquals(customerProductDBData.getImei2(), customerProduct.imei2());
 		Assert.assertEquals(customerProductDBData.getPopurl(), customerProduct.popurl());	
 		Assert.assertEquals(customerProductDBData.getMst_model_id(), customerProduct.mst_model_id());
+		
+JobHeadModel jobHeadDataFromDB = JobHeadDao.getDataFromJobHead(customerId);
+		
+		Assert.assertEquals(jobHeadDataFromDB.getMst_oem_id(), createJobPayload.mst_oem_id());
+		Assert.assertEquals(jobHeadDataFromDB.getMst_service_location_id(), createJobPayload.mst_service_location_id());
+		Assert.assertEquals(jobHeadDataFromDB.getMst_warrenty_status_id(), createJobPayload.mst_warrenty_status_id());
+		Assert.assertEquals(jobHeadDataFromDB.getMst_platform_id(), createJobPayload.mst_platform_id());
 		
 		
 		
