@@ -28,10 +28,12 @@ import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
 import com.database.dao.CustomerProductDao;
 import com.database.dao.JobHeadDao;
+import com.database.dao.MapJobProblemDao;
 import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
 import com.database.model.CustomerProductDBModel;
 import com.database.model.JobHeadModel;
+import com.database.model.MapJobProblemModel;
 
 import io.restassured.RestAssured;
 import io.restassured.module.jsv.JsonSchemaValidator;
@@ -113,14 +115,7 @@ public class CreateJobAPIWithDBValidationTest {
 		
 		int tr_customer_product_id = response.then().extract().jsonPath().getInt("data.tr_customer_product_id");
 		
-		CustomerProductDBModel customerProductDBData =   CustomerProductDao.getProductInfoFromDB(tr_customer_product_id);
 		
-		Assert.assertEquals(customerProductDBData.getDop(), customerProduct.dop());
-		Assert.assertEquals(customerProductDBData.getSerial_number(), customerProduct.serial_number());
-		Assert.assertEquals(customerProductDBData.getImei1(), customerProduct.imei1());
-		Assert.assertEquals(customerProductDBData.getImei2(), customerProduct.imei2());
-		Assert.assertEquals(customerProductDBData.getPopurl(), customerProduct.popurl());	
-		Assert.assertEquals(customerProductDBData.getMst_model_id(), customerProduct.mst_model_id());
 		
 		JobHeadModel jobHeadDataFromDB = JobHeadDao.getDataFromJobHead(customerId);
 		
@@ -128,6 +123,23 @@ public class CreateJobAPIWithDBValidationTest {
 		Assert.assertEquals(jobHeadDataFromDB.getMst_service_location_id(), createJobPayload.mst_service_location_id());
 		Assert.assertEquals(jobHeadDataFromDB.getMst_warrenty_status_id(), createJobPayload.mst_warrenty_status_id());
 		Assert.assertEquals(jobHeadDataFromDB.getMst_platform_id(), createJobPayload.mst_platform_id());
+		
+int tr_job_head_id = response.then().extract().jsonPath().getInt("data.id");
+		
+		MapJobProblemModel jobDataFromDB = MapJobProblemDao.getProblemDetails(tr_job_head_id);
+		
+		Assert.assertEquals(jobDataFromDB.getMst_problem_id(), createJobPayload.problems().get(0).id());
+		Assert.assertEquals(jobDataFromDB.getRemark(), createJobPayload.problems().get(0).remark());
+		
+		
+CustomerProductDBModel customerProductDBData =   CustomerProductDao.getProductInfoFromDB(tr_customer_product_id);
+		
+		Assert.assertEquals(customerProductDBData.getDop(), customerProduct.dop());
+		Assert.assertEquals(customerProductDBData.getSerial_number(), customerProduct.serial_number());
+		Assert.assertEquals(customerProductDBData.getImei1(), customerProduct.imei1());
+		Assert.assertEquals(customerProductDBData.getImei2(), customerProduct.imei2());
+		Assert.assertEquals(customerProductDBData.getPopurl(), customerProduct.popurl());	
+		Assert.assertEquals(customerProductDBData.getMst_model_id(), customerProduct.mst_model_id());
 		
 		
 		

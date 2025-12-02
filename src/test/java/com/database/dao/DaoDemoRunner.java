@@ -1,14 +1,14 @@
 package com.database.dao;
 
-import com.database.model.JobHeadModel;
+import com.database.model.MapJobProblemModel;
 
 public class DaoDemoRunner {
 
 	public static void main(String[] args) {
 		
-	 	JobHeadModel jobHeadModel = JobHeadDao.getDataFromJobHead(116975);
+		MapJobProblemModel mapJobProblemModel = MapJobProblemDao.getProblemDetails(118957);
 		
-		System.out.println(jobHeadModel);
+		System.out.println(mapJobProblemModel);
 
 	}
 
