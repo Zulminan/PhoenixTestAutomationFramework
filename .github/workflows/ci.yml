@@ -3,34 +3,41 @@ name: Phoenix Test Automation Workflow
 on:
   push:
     branches: [ "master" ]
-  pull_request:
+
+  pull_request_target:
     branches: [ "master" ]
+
   schedule:
     - cron: "30 18 * * *"
     - cron: "30 17 * * *"
     - cron: "30 16 * * *"
+
   workflow_dispatch:
     inputs:
       env:
         description: "Environment"
         type: choice
-        options: [qa,uat,dev]
+        options: [qa, uat, dev]
         default: qa
         required: true
 
       suiteXmlFile:
         description: "TestNG Xml File"
         type: choice
-        options: [testng.xml,smoke.xml,regression.xml,testng-datadriven.xml]
+        options: [testng.xml, smoke.xml, regression.xml, testng-datadriven.xml]
         default: testng.xml
         required: true
+
 jobs:
   build:
 
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
     - name: Set up JDK 17
       uses: actions/setup-java@v4
       with:
@@ -38,32 +45,51 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
-    - name: Creating the .env file
+    # -------------------------------------------------------
+    # CREATE .env FILE WITH SECRETS (THIS WILL NOW ALWAYS RUN)
+    # -------------------------------------------------------
+    - name: Create .env File
       env:
         DB_URL: ${{ secrets.DB_URL }}
         DB_USER_NAME: ${{ secrets.DB_USER_NAME }}
         DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
       run: |
-         echo "DB_URL length: ${#DB_URL}"
-         echo "DB_USER_NAME length: ${#DB_USER_NAME}"
-         echo "DB_PASSWORD length: ${#DB_PASSWORD}"
+        echo "Creating .env file..."
+        echo "DB_URL=$DB_URL" >> .env
+        echo "DB_USER_NAME=$DB_USER_NAME" >> .env
+        echo "DB_PASSWORD=$DB_PASSWORD" >> .env
 
+        echo "Secrets Loaded:"
+        echo "DB_URL length: ${#DB_URL}"
+        echo "DB_USER_NAME length: ${#DB_USER_NAME}"
+        echo "DB_PASSWORD length: ${#DB_PASSWORD}"
+
+    # -------------------------------------------------------
+    # HANDLE USER INPUTS OR DEFAULTS
+    # -------------------------------------------------------
     - name: Default Values For Execution
       id: default
       run: |
-           echo "suiteXmlFile=${{ github.event.inputs.suiteXmlFile || 'testng.xml' }}" >> $GITHUB_OUTPUT
-           echo "env=${{ github.event.inputs.env || 'qa' }}" >> $GITHUB_OUTPUT
-        
-    - name: Execute Test Automation Framework
-      run: mvn clean test -DsuiteXmlFile="${{ steps.default.outputs.suiteXmlFile }}" -Denv="${{ steps.default.outputs.env }}"
+        echo "suiteXmlFile=${{ github.event.inputs.suiteXmlFile || 'testng.xml' }}" >> $GITHUB_OUTPUT
+        echo "env=${{ github.event.inputs.env || 'qa' }}" >> $GITHUB_OUTPUT
 
-    - name: Upload a Build Artifact
+    # -------------------------------------------------------
+    # EXECUTE TEST AUTOMATION FRAMEWORK
+    # -------------------------------------------------------
+    - name: Execute Test Automation Framework
+      run: |
+        echo "Running Maven Tests..."
+        mvn clean test \
+          -DsuiteXmlFile="${{ steps.default.outputs.suiteXmlFile }}" \
+          -Denv="${{ steps.default.outputs.env }}"
+
+    # -------------------------------------------------------
+    # UPLOAD REPORTS
+    # -------------------------------------------------------
+    - name: Upload Surefire Report
       if: always()
       uses: actions/upload-artifact@v4.6.2
       with:
         name: Surefire Report
         path: target/surefire-reports/
         retention-days: 10
-        
-
-      
