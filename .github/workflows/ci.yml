@@ -38,6 +38,25 @@ jobs:
         distribution: 'temurin'
         cache: maven
 
+    # -------------------------------------------------------
+    # CREATE .env FILE WITH SECRETS (THIS WILL NOW ALWAYS RUN)
+    # -------------------------------------------------------
+    - name: Create .env File
+      env:
+        DB_URL: ${{ secrets.DB_URL }}
+        DB_USER_NAME: ${{ secrets.DB_USER_NAME }}
+        DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
+      run: |
+        echo "Creating .env file..."
+        echo "DB_URL=$DB_URL" >> .env
+        echo "DB_USER_NAME=$DB_USER_NAME" >> .env
+        echo "DB_PASSWORD=$DB_PASSWORD" >> .env
+
+        echo "Secrets Loaded:"
+        echo "DB_URL length: ${#DB_URL}"
+        echo "DB_USER_NAME length: ${#DB_USER_NAME}"
+        echo "DB_PASSWORD length: ${#DB_PASSWORD}"
+
     - name: Default Values For Execution
       id: default
       run: |
