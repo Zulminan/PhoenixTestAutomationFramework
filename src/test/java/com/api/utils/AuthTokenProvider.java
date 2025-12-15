@@ -1,6 +1,8 @@
 package com.api.utils;
 
 import java.io.File;
+import java.util.Map;
+import java.util.concurrent.ConcurrentHashMap;
 
 import org.hamcrest.Matchers;
 
@@ -13,6 +15,8 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class AuthTokenProvider {
 	
+	private static Map<Role,String> tokenCache = new ConcurrentHashMap<Role,String>();
+	
 	private AuthTokenProvider()
 	{
 		
@@ -21,6 +25,14 @@ public class AuthTokenProvider {
 	public static String getToken(Role role) {
 		
 		//I want to make a login request and I will extract the token.
+		
+		if(tokenCache.containsKey(role))
+		{
+			return tokenCache.get(role);
+		}
+		
+		
+		
 		
 		UserCredentials userCredentials = null;
 		
@@ -68,6 +80,8 @@ public class AuthTokenProvider {
 		            .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("responseSchema"+File.separator+"loginResponseSchema.json"))
 		            .extract().path("data.token");
 		
+                  tokenCache.put(role, token); 		
+ 		
 		           return token;
 		
 		
