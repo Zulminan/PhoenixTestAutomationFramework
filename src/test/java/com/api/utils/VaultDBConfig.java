@@ -18,7 +18,7 @@ public class VaultDBConfig {
 	{
 		try {
 			vaultConfig = new VaultConfig()
-					.address("http://12.62.49.234:8200")
+					.address(System.getenv("VAULT_SERVER"))
 					.token(System.getenv("VAULT_TOKEN"))
 					.build();
 		} 
