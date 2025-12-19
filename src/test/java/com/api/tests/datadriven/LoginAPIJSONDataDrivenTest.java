@@ -5,14 +5,24 @@ import static io.restassured.RestAssured.given;
 import java.io.IOException;
 
 import org.hamcrest.Matchers;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.api.request.model.UserCredentials;
+import com.api.services.AuthService;
 import com.api.utils.SpecUtil;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class LoginAPIJSONDataDrivenTest {
+	
+private AuthService authService;
+	
+	@BeforeMethod(description="Setting up the Auth Service reference")
+	public void setup()
+	{
+		 authService = new AuthService();
+	}
 	
 	
 	@Test(description="Verifying if login API is working for FD user",
@@ -24,9 +34,7 @@ public class LoginAPIJSONDataDrivenTest {
 		
 		
 		
-		given().spec(SpecUtil.requestSpec(userCredentials))
-		.when()
-		.post("/login")
+		authService.login(userCredentials)
 		.then()
 		.spec(SpecUtil.responseSpec_OK())
 		.and()

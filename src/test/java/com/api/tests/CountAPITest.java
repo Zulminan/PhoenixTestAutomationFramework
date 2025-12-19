@@ -3,25 +3,31 @@ package com.api.tests;
 import java.io.File;
 
 import org.hamcrest.Matchers;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
+import com.api.services.DashboardService;
 import com.api.utils.SpecUtil;
 
-import io.restassured.RestAssured;
 import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class CountAPITest {
+	
+	private DashboardService dashboardService;
+	
+	@BeforeMethod(description="Setting up the DashboardService instance")
+	public void setup()
+	{
+		dashboardService = new DashboardService();
+		
+	}
 	
 	
 	@Test(description="Verify if count API is giving correct response",groups= {"api","regression","smoke"})
 	public void verifyCountAPIResponse()
 	{
-		RestAssured
-		.given()
-		.spec(SpecUtil.requestSpecWithAuth(Role.FD))
-		.when()
-		.get(File.separator+"dashboard"+File.separator+"count")
+		dashboardService.count(Role.FD)
 		.then()
 		.spec(SpecUtil.responseSpec_OK())
 		.and()
@@ -41,10 +47,7 @@ public class CountAPITest {
 	@Test(description="Verifying if count API is giving correct status code for invalid token",groups= {"api","negative","regression","smoke"})
 	public void countAPITest_missingAuthToken()
 	{
-		RestAssured.given()
-		.spec(SpecUtil.requestSpec())
-		.when()
-		.get(File.separator+"dashboard"+File.separator+"count")
+		dashboardService.countWithNoAuth()
 		.then()
 		.spec(SpecUtil.responseSpec_TEXT(401));
 	}
