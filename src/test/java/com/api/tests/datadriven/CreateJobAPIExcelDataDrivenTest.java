@@ -3,31 +3,32 @@ package com.api.tests.datadriven;
 import java.io.File;
 
 import org.hamcrest.Matchers;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
 import com.api.request.model.CreateJobPayload;
+import com.api.services.JobService;
 import com.api.utils.SpecUtil;
 
 import io.restassured.RestAssured;
 import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class CreateJobAPIExcelDataDrivenTest {
-	
 
+	private JobService jobService;
 	
-	
-	
-	
-	
+	@BeforeMethod
+	public void setup()
+	{
+		jobService = new JobService();
+	}
+
 	@Test(description="Verify if create job API is able to create Inwarranty jobs",groups= {"api","regression","datadriven","excel"},
 			dataProviderClass = com.dataproviders.DataProviderUtils.class,dataProvider="CreateJobAPIDataProvider")
 	public void createJobAPITest(CreateJobPayload createJobPayload)
 	{
-		RestAssured.given()
-		.spec(SpecUtil.requestSpecWithAuth(Role.FD, createJobPayload))
-		.when()
-		.post("/job/create")
+		jobService.createJob(Role.FD, createJobPayload)
 		.then()
 		.spec(SpecUtil.responseSpec_OK())
 		.and()

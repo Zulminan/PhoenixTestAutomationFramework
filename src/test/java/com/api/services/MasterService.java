@@ -1,23 +1,26 @@
 package com.api.services;
 
-import java.io.File;
-
 import com.api.constants.Role;
 import com.api.utils.SpecUtil;
 
 import io.restassured.RestAssured;
+import io.restassured.response.Response;
 
 public class MasterService {
 
-	private static final String MASTER_ENDPOINT="/userdetails";
+	private static final String MASTER_ENDPOINT="/master";
 	
-public void masterService(Role role)
+public Response master(Role role)
 {
-	RestAssured
+	Response response = RestAssured
 	.given()
 	.spec(SpecUtil.requestSpecWithAuth(role))
 	.when()
 	.post(MASTER_ENDPOINT);
+	
+	return response;
+	
+	
 }
 	
 }
