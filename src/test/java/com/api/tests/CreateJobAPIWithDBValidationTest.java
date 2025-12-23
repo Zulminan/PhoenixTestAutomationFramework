@@ -22,6 +22,7 @@ import com.api.request.model.CustomerAddress;
 import com.api.request.model.CustomerProduct;
 import com.api.request.model.Model;
 import com.api.request.model.Problems;
+import com.api.services.JobService;
 import com.api.utils.DateTimeUtil;
 import com.api.utils.SpecUtil;
 import com.database.dao.CustomerAddressDao;
@@ -35,7 +36,6 @@ import com.database.model.CustomerProductDBModel;
 import com.database.model.JobHeadModel;
 import com.database.model.MapJobProblemModel;
 
-import io.restassured.RestAssured;
 import io.restassured.module.jsv.JsonSchemaValidator;
 import io.restassured.response.Response;
 
@@ -49,8 +49,10 @@ public class CreateJobAPIWithDBValidationTest {
 	
 	private CustomerProduct customerProduct;
 	
+	private JobService jobService;
 	
-	@BeforeMethod(description="Creating create job API request payload")
+	
+	@BeforeMethod(description="Creating create job API request payload and instantiating the JobService")
 	public void setup()
 	{
         customer = new Customer("Zulminan", "Ahmed", "9876543210", "", "ahmedzulminan@gmail.com", "");
@@ -68,16 +70,14 @@ public class CreateJobAPIWithDBValidationTest {
 		
 		createJobPayload = new CreateJobPayload(ServiceLocation.SERVCE_LOCATION_A.getCode(), Platform.FRONT_DESK.getCode(), Warranty_Status.IN_WARRANTY.getCode(), OEM.GOOGLE.getCode(), customer, customerAddress, customerProduct,problemsList);
 		
+		jobService = new JobService();
 	}
 	
 	
 	@Test(description="Verify if create job API is able to create Inwarranty jobs",groups= {"api","regression","smoke"})
 	public void createJobAPITest()
 	{
-		Response response = RestAssured.given()
-		.spec(SpecUtil.requestSpecWithAuth(Role.FD, createJobPayload))
-		.when()
-		.post("/job/create")
+		Response response =jobService.createJob(Role.FD, createJobPayload)
 		.then()
 		.spec(SpecUtil.responseSpec_OK())
 		.and()

@@ -1,7 +1,5 @@
 package com.api.tests;
 
-import static io.restassured.RestAssured.given;
-
 import java.io.IOException;
 
 import org.hamcrest.Matchers;
@@ -9,19 +7,27 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.api.request.model.UserCredentials;
+import com.api.services.AuthService;
 import com.api.utils.SpecUtil;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
+import io.restassured.response.Response;
 
 public class LoginAPITest {
 	
 	private UserCredentials userCredentials;
+	
+	private AuthService authService;
+	
+	
 	
 	
 	@BeforeMethod(description="Create the payload for the login API")
 	public void setup()
 	{
 		userCredentials = new UserCredentials("iamfd", "password");
+		
+		authService = new AuthService();
 		
 	}
 	
@@ -31,10 +37,7 @@ public class LoginAPITest {
 	{
 		
 		
-		
-		given().spec(SpecUtil.requestSpec(userCredentials))
-		.when()
-		.post("/login")
+		authService.login(userCredentials)
 		.then()
 		.spec(SpecUtil.responseSpec_OK())
 		.and()

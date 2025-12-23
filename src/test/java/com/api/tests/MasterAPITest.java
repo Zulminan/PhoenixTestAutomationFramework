@@ -3,9 +3,11 @@ package com.api.tests;
 import java.io.File;
 
 import org.hamcrest.Matchers;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
+import com.api.services.MasterService;
 import com.api.utils.SpecUtil;
 
 import io.restassured.RestAssured;
@@ -13,14 +15,18 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 
 public class MasterAPITest {
 	
+	private MasterService masterService;
+	
+	@BeforeMethod(description="Instantiating the Master Service Object")
+	public void setup()
+	{
+		masterService = new MasterService();
+	}
+	
 	@Test(description="Verifying if master API is giving correct response",groups= {"api","regression","smoke"})
 	public void masterAPITest()
 	{
-		RestAssured
-		.given()
-		.spec(SpecUtil.requestSpecWithAuth(Role.FD))
-		.when()
-		.post(File.separator+"master")
+		masterService.master(Role.FD)
 		.then()
 		.spec(SpecUtil.responseSpec_OK())
 		.and()
