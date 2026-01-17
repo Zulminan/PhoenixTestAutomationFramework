@@ -4,6 +4,8 @@ import java.io.File;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hamcrest.Matchers;
 
 import com.api.constants.Role;
@@ -17,6 +19,8 @@ public class AuthTokenProvider {
 	
 	private static Map<Role,String> tokenCache = new ConcurrentHashMap<Role,String>();
 	
+	private static final Logger LOGGER = LogManager.getLogger(AuthTokenProvider.class);
+	
 	private AuthTokenProvider()
 	{
 		
@@ -24,15 +28,18 @@ public class AuthTokenProvider {
 	
 	public static String getToken(Role role) {
 		
-		//I want to make a login request and I will extract the token.
+	
+		LOGGER.info("Checking if the token for {} is present in the cache",role);
 		
 		if(tokenCache.containsKey(role))
 		{
+			LOGGER.info("Token found for {}",role);
+			
 			return tokenCache.get(role);
 		}
 		
 		
-		
+		LOGGER.info("Token not found making the login request for the role {}",role);
 		
 		UserCredentials userCredentials = null;
 		
@@ -79,6 +86,8 @@ public class AuthTokenProvider {
 		            .body("message",Matchers.equalTo("Success"))
 		            .body(JsonSchemaValidator.matchesJsonSchemaInClasspath("responseSchema"+File.separator+"loginResponseSchema.json"))
 		            .extract().path("data.token");
+		
+		LOGGER.info("Token Cached for future request");
 		
                   tokenCache.put(role, token); 		
  		

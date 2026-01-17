@@ -1,5 +1,7 @@
 package com.api.utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.hamcrest.Matchers;
 
 import com.api.constants.Role;
@@ -12,6 +14,8 @@ import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
 public class SpecUtil {
+	
+	
 	
 
 	//GET and DEL

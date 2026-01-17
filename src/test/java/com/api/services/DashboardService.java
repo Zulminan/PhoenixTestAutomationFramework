@@ -1,5 +1,8 @@
 package com.api.services;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.api.constants.Role;
 import com.api.utils.SpecUtil;
 
@@ -12,8 +15,12 @@ public class DashboardService {
 	
 	private static final String DETAIL_ENDPOINT = "/dashboard/details";
 	
+	private static final Logger LOGGER = LogManager.getLogger(DashboardService.class);
+	
 	public Response count(Role role)
 	{
+		LOGGER.info("Making request to the {} for the role {}",COUNT_ENDPOINT,role);
+		
 		Response response = RestAssured
 		.given()
 		.spec(SpecUtil.requestSpecWithAuth(Role.FD))
@@ -25,6 +32,8 @@ public class DashboardService {
 	
 	public Response countWithNoAuth()
 	{
+		LOGGER.info("Making request to the {} with no Auth Token",COUNT_ENDPOINT);
+		
 		Response response = RestAssured
 		.given()
 		.spec(SpecUtil.requestSpec())
@@ -36,6 +45,8 @@ public class DashboardService {
 	
 	public Response details(Role role, Object payload)
 	{
+		LOGGER.info("Making request to the {} with role {} and the payload {}",DETAIL_ENDPOINT,role,payload);
+		
 		Response response = RestAssured
 		.given()
 		.spec(SpecUtil.requestSpecWithAuth(Role.FD))

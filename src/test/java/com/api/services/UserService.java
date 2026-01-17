@@ -1,5 +1,8 @@
 package com.api.services;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.api.constants.Role;
 import com.api.utils.SpecUtil;
 
@@ -10,8 +13,12 @@ public class UserService {
 	
 	private static final String USERDETAILS_ENDPOINT="/userdetails";
 	
+	private static final Logger LOGGER = LogManager.getLogger(UserService.class);
+	
 	public Response userDetails(Role role)
 	{
+		LOGGER.info("Making request to {} for the role {}",USERDETAILS_ENDPOINT,role);
+		
 		Response response = RestAssured
 		.given()
 		.spec(SpecUtil.requestSpecWithAuth(Role.FD))
