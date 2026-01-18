@@ -5,10 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.database.DatabaseManager;
 import com.database.model.JobHeadModel;
 
 public class JobHeadDao {
+	
+	private static final Logger LOGGER = LogManager.getLogger(JobHeadDao.class);
 
 private static final String JOB_HEAD_QUERY = """
 			
@@ -35,8 +40,13 @@ private static final String JOB_HEAD_QUERY = """
 	
 	try 
 	{
+		LOGGER.info("Getting the connection from the Database Manager");
+		
 		statement = conn.prepareStatement(JOB_HEAD_QUERY);
 		statement.setInt(1, tr_customer_id);
+		
+		LOGGER.info("Executing the SQL Query {}",JOB_HEAD_QUERY);
+		
 		resultSet = statement.executeQuery();
 		
 		
@@ -60,6 +70,7 @@ private static final String JOB_HEAD_QUERY = """
 	
 	catch (SQLException e) 
 	{
+		LOGGER.error("Cannot convert the ResultSet to the jobHeadModel bean",e);
 		
 		e.printStackTrace();
 	}

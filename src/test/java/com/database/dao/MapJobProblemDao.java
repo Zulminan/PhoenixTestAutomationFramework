@@ -5,10 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import com.database.DatabaseManager;
 import com.database.model.MapJobProblemModel;
 
 public class MapJobProblemDao {
+	
+	private static final Logger LOGGER = LogManager.getLogger(MapJobProblemDao.class);
 	
 	
 private static final String PROBLEM_QUERY = """
@@ -36,9 +41,13 @@ private static final String PROBLEM_QUERY = """
 		
 		 try 
 		 {
+			 LOGGER.info("Getting the connection from the Database Manager");
+			 
 			statement = conn.prepareStatement(PROBLEM_QUERY);
 			
 			statement .setInt(1, tr_job_head_id);
+			
+			LOGGER.info("Executing the SQL Query {}",PROBLEM_QUERY);
 			 
 			 resultSet =  statement.executeQuery();
 			 
@@ -58,6 +67,7 @@ private static final String PROBLEM_QUERY = """
 		 catch (SQLException e) 
 		 
 		 {
+			 LOGGER.error("Cannot convert the ResultSet to the mapJobProblemModel bean",e);
 			
 			e.printStackTrace();
 		}

@@ -1,16 +1,14 @@
 package com.api.tests.datadriven;
 
-import static io.restassured.RestAssured.given;
-
 import java.io.IOException;
 
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.api.request.model.UserCredentials;
 import com.api.services.AuthService;
 import com.api.utils.SpecUtil;
+import com.dataproviders.api.bean.UserBean;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
 
@@ -29,7 +27,7 @@ private AuthService authService;
 			groups= {"api","regression","datadriven"},
 			dataProviderClass = com.dataproviders.DataProviderUtils.class, 
 			dataProvider="LoginAPIJsonDataProvider")
-	public void loginAPITest(UserCredentials userCredentials) throws IOException
+	public void loginAPITest(UserBean userCredentials) throws IOException
 	{
 		
 		

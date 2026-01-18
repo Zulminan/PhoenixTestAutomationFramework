@@ -1,1 +1,86 @@
-2026-01-16 20:18:99 {main} INFO com.demo.Demo ::main ::12 Inside the main() method!! 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:28 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:29 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 3 ms. 
+2026-01-18 18:39:30 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 4 ms. 
+2026-01-18 18:39:30 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:30 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:30 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:30 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:30 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:30 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:30 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:30 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:30 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:30 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:30 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.collectMethodsByGroup() took 0 ms. 
+2026-01-18 18:39:30 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] MethodGroupsHelper.sortMethods() took 0 ms. 
+2026-01-18 18:39:31 {main} INFO org.testng.internal.Utils ::info ::112 [TestNG] Running:
+  /private/var/folders/88/j85s5x1d2dnfxm5r463jj_kc0000gn/T/testng-eclipse-315661216/testng-customsuite.xml
+ 
+2026-01-18 18:39:32 {main} INFO org.testng.internal.Utils ::info ::112 [Utils] DynamicGraphHelper.createDynamicGraph() took 2 ms. 
+2026-01-18 18:39:33 {main} INFO com.dataproviders.DataProviderUtils ::createJobAPIDBDataProvider ::131 Loading the data from Database for CreateJobPayload 
+2026-01-18 18:39:34 {main} INFO com.database.dao.CreateJobPayloadDataDao ::getCreateJobPayloadData ::71 Getting the connection from the Database Manager 
+2026-01-18 18:39:34 {main} INFO com.api.utils.ConfigManager ::<clinit> ::32 Reading env value passed from terminal 
+2026-01-18 18:39:34 {main} WARN com.api.utils.ConfigManager ::<clinit> ::36 Env variable is not set....using qa as the env 
+2026-01-18 18:39:34 {main} INFO com.api.utils.ConfigManager ::<clinit> ::41 Running the test in the env qa 
+2026-01-18 18:39:34 {main} INFO com.api.utils.ConfigManager ::<clinit> ::61 Using the properties file from the path config/config.qa.properties  
+2026-01-18 18:39:34 {main} ERROR org.testng.internal.Utils ::error ::154 [Error] java.lang.ExceptionInInitializerError
+	at com.database.DatabaseManager.loadSecret(DatabaseManager.java:54)
+	at com.database.DatabaseManager.&lt;clinit&gt;(DatabaseManager.java:41)
+	at com.database.dao.CreateJobPayloadDataDao.getCreateJobPayloadData(CreateJobPayloadDataDao.java:73)
+	at com.dataproviders.DataProviderUtils.createJobAPIDBDataProvider(DataProviderUtils.java:133)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:141)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethod(MethodInvocationHelper.java:86)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeMethodNoCheckedException(MethodInvocationHelper.java:54)
+	at org.testng.internal.invokers.MethodInvocationHelper.invokeDataProvider(MethodInvocationHelper.java:159)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:809)
+	at org.testng.internal.Parameters.handleParameters(Parameters.java:734)
+	at org.testng.internal.invokers.ParameterHandler.handleParameters(ParameterHandler.java:72)
+	at org.testng.internal.invokers.ParameterHandler.createParameters(ParameterHandler.java:51)
+	at org.testng.internal.invokers.TestInvoker$MethodInvocationAgent.invoke(TestInvoker.java:949)
+	at org.testng.internal.invokers.TestInvoker.invokeTestMethods(TestInvoker.java:203)
+	at org.testng.internal.invokers.TestMethodWorker.invokeTestMethods(TestMethodWorker.java:154)
+	at org.testng.internal.invokers.TestMethodWorker.run(TestMethodWorker.java:134)
+	at java.base/java.util.ArrayList.forEach(ArrayList.java:1596)
+	at org.testng.TestRunner.privateRun(TestRunner.java:741)
+	at org.testng.TestRunner.run(TestRunner.java:616)
+	at org.testng.SuiteRunner.runTest(SuiteRunner.java:421)
+	at org.testng.SuiteRunner.runSequentially(SuiteRunner.java:413)
+	at org.testng.SuiteRunner.privateRun(SuiteRunner.java:373)
+	at org.testng.SuiteRunner.run(SuiteRunner.java:312)
+	at org.testng.SuiteRunnerWorker.runSuite(SuiteRunnerWorker.java:52)
+	at org.testng.SuiteRunnerWorker.run(SuiteRunnerWorker.java:95)
+	at org.testng.TestNG.runSuitesSequentially(TestNG.java:1274)
+	at org.testng.TestNG.runSuitesLocally(TestNG.java:1208)
+	at org.testng.TestNG.runSuites(TestNG.java:1112)
+	at org.testng.TestNG.run(TestNG.java:1079)
+	at org.testng.remote.AbstractRemoteTestNG.run(AbstractRemoteTestNG.java:115)
+	at org.testng.remote.RemoteTestNG.initAndRun(RemoteTestNG.java:293)
+	at org.testng.remote.RemoteTestNG.main(RemoteTestNG.java:91)
+Caused by: java.lang.NullPointerException: Cannot invoke &quot;String.trim()&quot; because &quot;address&quot; is null
+	at com.bettercloud.vault.VaultConfig.address(VaultConfig.java:112)
+	at com.api.utils.VaultDBConfig.&lt;clinit&gt;(VaultDBConfig.java:26)
+	... 34 more
+ 
+2026-01-18 18:39:40 {main} INFO org.testng.internal.Utils ::info ::112 [TestNG] Time taken by org.testng.reporters.jq.Main@56a4479a: 27 ms 
+2026-01-18 18:39:41 {main} INFO org.testng.internal.Utils ::info ::112 [TestNG] Time taken by org.testng.reporters.FailedReporter@792bbc74: 7 ms 
+2026-01-18 18:39:41 {main} INFO org.testng.internal.Utils ::info ::112 [TestNG] Time taken by org.testng.reporters.XMLReporter@d8305c2: 5 ms 
+2026-01-18 18:39:42 {main} INFO org.testng.internal.Utils ::info ::112 [TestNG] Time taken by org.testng.reporters.EmailableReporter2@7b324585: 3 ms 
+2026-01-18 18:39:42 {main} INFO org.testng.internal.Utils ::info ::112 [TestNG] Time taken by org.testng.reporters.JUnitReportReporter@27305e6: 3 ms 
+2026-01-18 18:39:42 {main} INFO org.testng.internal.Utils ::info ::112 [TestNG] Time taken by org.testng.internal.ExitCodeListener@1ef3efa8: 0 ms 

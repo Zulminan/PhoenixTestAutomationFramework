@@ -5,8 +5,8 @@ import static io.restassured.RestAssured.given;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.api.request.model.UserCredentials;
 import com.api.utils.SpecUtil;
+import com.dataproviders.api.bean.UserBean;
 
 import io.restassured.response.Response;
 
@@ -20,7 +20,7 @@ public class AuthService {
 	
 	public Response login(Object userCredentials)
 	{
-		LOGGER.info("Making logging request for the payload {}",((UserCredentials)userCredentials).username());
+		LOGGER.info("Making logging request for the payload {}",((UserBean)userCredentials).getUsername());
 		
 		Response response = given().spec(SpecUtil.requestSpec(userCredentials))
 		.when()

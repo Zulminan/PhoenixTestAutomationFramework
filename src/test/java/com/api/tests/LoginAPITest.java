@@ -6,16 +6,15 @@ import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import com.api.request.model.UserCredentials;
 import com.api.services.AuthService;
 import com.api.utils.SpecUtil;
+import com.dataproviders.api.bean.UserBean;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
-import io.restassured.response.Response;
 
 public class LoginAPITest {
 	
-	private UserCredentials userCredentials;
+	private UserBean userCredentials;
 	
 	private AuthService authService;
 	
@@ -25,7 +24,7 @@ public class LoginAPITest {
 	@BeforeMethod(description="Create the payload for the login API")
 	public void setup()
 	{
-		userCredentials = new UserCredentials("iamfd", "password");
+		userCredentials = new UserBean("iamfd", "password");
 		
 		authService = new AuthService();
 		
