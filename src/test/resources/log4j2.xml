@@ -2,16 +2,15 @@
 
 <Appenders>
 
-<Console name="console" target="SYSTEM_OUT">
+<Console name="Console" target="SYSTEM_OUT">
 
 <PatternLayout pattern = "%d{YYYY-MM-dd HH:mm:SS} {%t} %highlight{%level} %logger ::%M ::%L %msg %n"></PatternLayout>
 
 </Console>
 
-<File name="FileLogger" fileName="logs/automation.log" append="false">
+<File name="FileAppender" fileName="logs/application.log" append="false">
 
-
-<PatternLayout pattern = "%d{YYYY-MM-dd HH:mm:SS} {%t} %level %logger ::%M ::%L %msg %n"></PatternLayout>
+<PatternLayout pattern = "%d{YYYY-MM-dd HH:mm:SS} {%t} %highlight{%level} %logger ::%M ::%L %msg %n"></PatternLayout>
 
 
 </File>
@@ -23,9 +22,9 @@
 
 <Root level="info">
 
-<AppenderRef ref="console"></AppenderRef>
+<AppenderRef ref="Console"></AppenderRef>
 
-<AppenderRef ref="FileLogger"></AppenderRef>
+<AppenderRef ref="FileAppender"></AppenderRef>
 
 </Root>
 </Loggers>
