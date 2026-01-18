@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.services.AuthService;
@@ -11,6 +12,8 @@ import com.api.utils.SpecUtil;
 import com.dataproviders.api.bean.UserBean;
 
 import io.restassured.module.jsv.JsonSchemaValidator;
+
+@Listeners(com.listeners.APITestListener.class)
 
 public class LoginAPITest {
 	
