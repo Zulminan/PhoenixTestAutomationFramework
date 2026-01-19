@@ -1,7 +1,5 @@
 package com.api.tests.datadriven;
 
-import static io.restassured.RestAssured.given;
-
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
