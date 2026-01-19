@@ -1,10 +1,9 @@
 package com.api.utils;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.hamcrest.Matchers;
 
 import com.api.constants.Role;
+import com.api.filters.SensitiveDataFilter;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
@@ -52,12 +51,14 @@ public class SpecUtil {
 	   .and()
 	   .setAccept(ContentType.JSON)
 	   .and()
+	   .setBody(payload)
+	   .addFilter(new SensitiveDataFilter())
 	   .log(LogDetail.URI)
 	   .log(LogDetail.METHOD)
 	   .log(LogDetail.HEADERS)
 	   .log(LogDetail.BODY)
 	   .and()
-	   .setBody(payload)
+	   
 	   
 	   .build();
 	   
