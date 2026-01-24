@@ -4,13 +4,13 @@
 
 <Console name="Console" target="SYSTEM_OUT">
 
-<PatternLayout pattern = "%d{YYYY-MM-dd HH:mm:SS} {%t} %highlight{%level} %logger ::%M ::%L %msg %n"></PatternLayout>
+<PatternLayout pattern = "%d{YYYY-MM-dd HH:mm:SS} {%t} %highlight{%level} %c{1} ::%M ::%L %msg %n"></PatternLayout>
 
 </Console>
 
 <File name="FileAppender" fileName="logs/application.log" append="false">
 
-<PatternLayout pattern = "%d{YYYY-MM-dd HH:mm:SS} {%t} %highlight{%level} %logger ::%M ::%L %msg %n"></PatternLayout>
+<PatternLayout pattern = "%d{YYYY-MM-dd HH:mm:SS} {%t} %highlight{%level} %c{1} ::%M ::%L %msg %n"></PatternLayout>
 
 
 </File>
