@@ -1,23 +1,18 @@
 package com.api.utils;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.hamcrest.Matchers;
 
 import com.api.constants.Role;
+import com.api.filters.SensitiveDataFilter;
 
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
-import io.restassured.filter.log.LogDetail;
 import io.restassured.http.ContentType;
 import io.restassured.specification.RequestSpecification;
 import io.restassured.specification.ResponseSpecification;
 
 public class SpecUtil {
 	
-	
-	
-
 	//GET and DEL
 	public static RequestSpecification requestSpec()
 	{
@@ -30,11 +25,7 @@ public class SpecUtil {
 	   .and()
 	   .setAccept(ContentType.JSON)
 	   .and()
-	   .log(LogDetail.URI)
-	   .log(LogDetail.METHOD)
-	   .log(LogDetail.HEADERS)
-	   .log(LogDetail.BODY)
-	   
+	   .addFilter(new SensitiveDataFilter())
 	   .build();
 	   
 	   return request;
@@ -52,12 +43,10 @@ public class SpecUtil {
 	   .and()
 	   .setAccept(ContentType.JSON)
 	   .and()
-	   .log(LogDetail.URI)
-	   .log(LogDetail.METHOD)
-	   .log(LogDetail.HEADERS)
-	   .log(LogDetail.BODY)
-	   .and()
 	   .setBody(payload)
+	   .addFilter(new SensitiveDataFilter())
+	   .and()
+	   
 	   
 	   .build();
 	   
@@ -69,7 +58,6 @@ public class SpecUtil {
 		ResponseSpecification responseSpecification =new ResponseSpecBuilder()
 		.expectStatusCode(200)
 		.expectResponseTime(Matchers.lessThan(1000L))
-		.log(LogDetail.ALL)
 		.build();
 		
 		return responseSpecification;
@@ -86,10 +74,7 @@ public class SpecUtil {
 				   .setAccept(ContentType.JSON)
 				   .and()
 				   .addHeader("Authorization",AuthTokenProvider.getToken(role))
-				   .log(LogDetail.URI)
-				   .log(LogDetail.METHOD)
-				   .log(LogDetail.HEADERS)
-				   .log(LogDetail.BODY)
+				   .addFilter(new SensitiveDataFilter())
 				   .build();
 				   
 				   return request;
@@ -105,11 +90,8 @@ public class SpecUtil {
 				   .setAccept(ContentType.JSON)
 				   .and()
 				   .addHeader("Authorization",AuthTokenProvider.getToken(role))
-				   .log(LogDetail.URI)
-				   .log(LogDetail.METHOD)
-				   .log(LogDetail.HEADERS)
-				   .log(LogDetail.BODY)
 				   .setBody(payload)
+				   .addFilter(new SensitiveDataFilter())
 				   .build();
 				   
 				   return request;
@@ -122,7 +104,6 @@ public class SpecUtil {
 	    .expectContentType(ContentType.JSON)
 		.expectStatusCode(statusCode)
 		.expectResponseTime(Matchers.lessThan(1000L))
-		.log(LogDetail.ALL)
 		.build();
 		
 		return responseSpecification;
@@ -134,7 +115,6 @@ public class SpecUtil {
 		ResponseSpecification responseSpecification =new ResponseSpecBuilder()
 		.expectStatusCode(statusCode)
 		.expectResponseTime(Matchers.lessThan(1000L))
-		.log(LogDetail.ALL)
 		.build();
 		
 		return responseSpecification;

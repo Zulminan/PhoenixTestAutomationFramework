@@ -21,9 +21,6 @@ public class LoginAPITest {
 	
 	private AuthService authService;
 	
-	
-	
-	
 	@BeforeMethod(description="Create the payload for the login API")
 	public void setup()
 	{
