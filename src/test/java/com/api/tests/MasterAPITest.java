@@ -19,7 +19,6 @@ import io.restassured.module.jsv.JsonSchemaValidator;
 public class MasterAPITest {
 	
 	
-	
 	private MasterService masterService;
 	
 	@BeforeMethod(description="Instantiating the Master Service Object")

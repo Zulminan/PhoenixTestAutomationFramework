@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.hamcrest.Matchers;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.constants.OEM;
@@ -25,9 +26,9 @@ import com.api.services.JobService;
 import com.api.utils.DateTimeUtil;
 import com.api.utils.SpecUtil;
 
-import io.restassured.RestAssured;
 import io.restassured.module.jsv.JsonSchemaValidator;
 
+@Listeners(com.listeners.APITestListener.class)
 public class CreateJobAPITest {
 	
 	private CreateJobPayload createJobPayload;

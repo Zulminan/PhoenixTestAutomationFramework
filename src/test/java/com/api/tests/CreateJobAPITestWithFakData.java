@@ -5,6 +5,7 @@ import java.io.File;
 import org.hamcrest.Matchers;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
+import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
 import com.api.constants.Role;
@@ -20,9 +21,9 @@ import com.database.model.CustomerAddressDBModel;
 import com.database.model.CustomerDBModel;
 import com.database.model.JobHeadModel;
 
-import io.restassured.RestAssured;
 import io.restassured.module.jsv.JsonSchemaValidator;
 
+@Listeners(com.listeners.APITestListener.class)
 public class CreateJobAPITestWithFakData {
 	
 	private CreateJobPayload createJobPayload;

@@ -13,9 +13,6 @@ import io.restassured.specification.ResponseSpecification;
 
 public class SpecUtil {
 	
-	
-	
-
 	//GET and DEL
 	public static RequestSpecification requestSpec()
 	{
