@@ -4,8 +4,11 @@ import java.util.Arrays;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.testng.ITestContext;
 import org.testng.ITestListener;
 import org.testng.ITestResult;
+
+import com.api.utils.AllureEnvironmentWriterUtil;
 
 public class APITestListener implements ITestListener 
 {
@@ -54,14 +57,16 @@ public class APITestListener implements ITestListener
 		LOGGER.error(result.getThrowable());
 	}
 	
-	public void onStart(ITestResult result) 
+	public void onStart(ITestContext context) 
 	{
 		LOGGER.info("********* Starting the Phoenix Framework **********");
+		
+		AllureEnvironmentWriterUtil.createEnvironmentPropertiesFile();
 		
 		
 	}
 	
-	public void onFinish(ITestResult result) 
+	public void onFinish(ITestContext context) 
 	{
 		LOGGER.info("********* FINISH **********");
 	}
