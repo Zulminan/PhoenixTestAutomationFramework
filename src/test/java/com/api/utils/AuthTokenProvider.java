@@ -11,6 +11,7 @@ import org.hamcrest.Matchers;
 import com.api.constants.Role;
 import com.api.request.model.UserCredentials;
 
+import io.qameta.allure.Step;
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
 import io.restassured.module.jsv.JsonSchemaValidator;
@@ -26,6 +27,7 @@ public class AuthTokenProvider {
 		
 	}
 	
+	@Step("Getting the Auth token for the role")
 	public static String getToken(Role role) {
 		
 	

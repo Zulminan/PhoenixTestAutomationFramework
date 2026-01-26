@@ -12,6 +12,8 @@ import com.api.utils.VaultDBConfig;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import io.qameta.allure.Step;
+
 public class DatabaseManager {
 	
 	private static final Logger LOGGER = LogManager.getLogger(DatabaseManager.class);
@@ -44,6 +46,7 @@ public class DatabaseManager {
 	
 	
 
+    @Step("Loading database secrets")
 	public static String loadSecret(String key) {
 		String value = null;
 
@@ -81,6 +84,7 @@ public class DatabaseManager {
 
 	}
 
+	@Step("Initializing the Database connection pool")
 	public synchronized static void initializePool() {
 		if (hikariDataSource == null) {
 			
@@ -111,6 +115,7 @@ public class DatabaseManager {
 
 	}
 
+	@Step("Getting the Database connection")
 	public static Connection getConnection() {
 		if (hikariDataSource == null) {
 			

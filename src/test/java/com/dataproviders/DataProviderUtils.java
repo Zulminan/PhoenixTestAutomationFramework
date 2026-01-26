@@ -14,7 +14,7 @@ import com.api.request.model.CreateJobPayload;
 import com.api.utils.CSVReaderUtil;
 import com.api.utils.CreateJobBeanMapper;
 import com.api.utils.ExcelReaderUtil;
-import com.api.utils.FakerDataGenerator;
+import com.api.utils.FakeDataGenerator;
 import com.api.utils.JsonReaderUtil;
 import com.database.dao.CreateJobPayloadDataDao;
 import com.dataproviders.api.bean.CreateJobBean;
@@ -66,7 +66,7 @@ public class DataProviderUtils {
 		
 		LOGGER.info("Generating the fake create job data with the faker count {},",fakerCountInt);
 		
-		Iterator<CreateJobPayload> payloadIterator = FakerDataGenerator.generateFakeCreateJobData(fakerCountInt);
+		Iterator<CreateJobPayload> payloadIterator = FakeDataGenerator.generateFakeCreateJobData(fakerCountInt);
 		
 		return payloadIterator;
 	}
