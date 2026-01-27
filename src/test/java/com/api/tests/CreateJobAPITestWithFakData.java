@@ -12,7 +12,7 @@ import com.api.constants.Role;
 import com.api.request.model.CreateJobPayload;
 import com.api.request.model.Customer;
 import com.api.services.JobService;
-import com.api.utils.FakerDataGenerator;
+import com.api.utils.FakeDataGenerator;
 import com.api.utils.SpecUtil;
 import com.database.dao.CustomerAddressDao;
 import com.database.dao.CustomerDao;
@@ -34,7 +34,7 @@ public class CreateJobAPITestWithFakData {
 	@BeforeMethod(description="Creating create job API request payload and instantiating the JobService")
 	public void setup()
 	{
-        createJobPayload = FakerDataGenerator.generateFakeCreateJobData();
+        createJobPayload = FakeDataGenerator.generateFakeCreateJobData();
         
         jobService = new JobService();
 	}

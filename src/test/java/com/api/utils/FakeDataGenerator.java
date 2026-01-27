@@ -16,7 +16,9 @@ import com.api.request.model.CustomerProduct;
 import com.api.request.model.Problems;
 import com.github.javafaker.Faker;
 
-public class FakerDataGenerator{
+import io.qameta.allure.Step;
+
+public class FakeDataGenerator{
 	
 	private static final String COUNTRY = "India";
 	private static Faker faker = new Faker(new Locale("en-IND"));
@@ -29,14 +31,14 @@ public class FakerDataGenerator{
 	private final static int MST_MODEL_ID = 1;
 	private final static int VALID_PROBLEMS_ID[] = {1,2,3,4,5,6,7,8,9,10,11,12,15,16,17,19,20,22,24,26,27,28,29};
 	
-	private static final Logger LOGGER = LogManager.getLogger(FakerDataGenerator.class);
+	private static final Logger LOGGER = LogManager.getLogger(FakeDataGenerator.class);
 	
-	private FakerDataGenerator()
+	private FakeDataGenerator()
 	{
 		
 	}
 
-	
+	@Step("Generating Fake Create Job Data")
 	public static CreateJobPayload generateFakeCreateJobData()
 	
 	{
@@ -56,6 +58,7 @@ public class FakerDataGenerator{
 		
 	}
 	
+@Step("Generating multiple Fake Create Job data with the count")	
 public static Iterator<CreateJobPayload> generateFakeCreateJobData(int count)
 	
 	{
@@ -86,6 +89,7 @@ public static Iterator<CreateJobPayload> generateFakeCreateJobData(int count)
 	}
 
 
+@Step("Generating fake customer data info")
 	public static Customer generateFakeCustomerData()
 	{
 		String fname = faker.name().firstName();
@@ -100,6 +104,7 @@ public static Iterator<CreateJobPayload> generateFakeCreateJobData(int count)
 		return customer;
 	}
 	
+	@Step("Generating fake customer address info")
 	private static CustomerAddress generatefakeCustomerAddress() 
 	{
 		
@@ -117,6 +122,7 @@ public static Iterator<CreateJobPayload> generateFakeCreateJobData(int count)
 		return customerAddress;
 	}
 	
+	@Step("Generating fake customer product info")
 	private static CustomerProduct generateFakeCustomerProduct() 
 	{
 		//CustomerProduct fake object
@@ -128,6 +134,7 @@ public static Iterator<CreateJobPayload> generateFakeCreateJobData(int count)
 		return customerProduct;
 	}
 	
+	@Step("Generating fake Problem list for the create job payload")
 	private static List<Problems> generateFakeProblemsList() 
 	{
 		int count = RANDOM.nextInt(3)+1;

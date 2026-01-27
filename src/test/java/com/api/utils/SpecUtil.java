@@ -5,6 +5,8 @@ import org.hamcrest.Matchers;
 import com.api.constants.Role;
 import com.api.filters.SensitiveDataFilter;
 
+import io.qameta.allure.Step;
+import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.builder.RequestSpecBuilder;
 import io.restassured.builder.ResponseSpecBuilder;
 import io.restassured.http.ContentType;
@@ -14,6 +16,7 @@ import io.restassured.specification.ResponseSpecification;
 public class SpecUtil {
 	
 	//GET and DEL
+	@Step("Setting up the BaseURI, Content Type as Application/JSON and attaching the SensitiveData filter ")
 	public static RequestSpecification requestSpec()
 	{
 		//to take care of the common request sections (methods)
@@ -26,12 +29,14 @@ public class SpecUtil {
 	   .setAccept(ContentType.JSON)
 	   .and()
 	   .addFilter(new SensitiveDataFilter())
+	   .addFilter(new AllureRestAssured())
 	   .build();
 	   
 	   return request;
 	}
 	
 	//POST, PUT, and PATCH
+	@Step("Setting up the BaseURI, Content Type as Application/JSON and attaching the SensitiveData filter")
 	public static RequestSpecification requestSpec(Object payload)
 	{
 		//to take care of the common request sections (methods)
@@ -45,6 +50,7 @@ public class SpecUtil {
 	   .and()
 	   .setBody(payload)
 	   .addFilter(new SensitiveDataFilter())
+	   .addFilter(new AllureRestAssured())
 	   .and()
 	   
 	   
@@ -53,6 +59,7 @@ public class SpecUtil {
 	   return request;
 	}
 	
+	@Step("Expecting the response to have Content type as Application/Json, Status code 200 and Response Time less than 1000 ms")
 	public static ResponseSpecification responseSpec_OK()
 	{
 		ResponseSpecification responseSpecification =new ResponseSpecBuilder()
@@ -64,6 +71,7 @@ public class SpecUtil {
 		
 	}
 	
+	@Step("Setting up the BaseURI, Content Type as Application/JSON and attaching the SensitiveData filter for a role")
 	public static RequestSpecification requestSpecWithAuth(Role role)
 	{
 		RequestSpecification request = new RequestSpecBuilder()
@@ -75,11 +83,13 @@ public class SpecUtil {
 				   .and()
 				   .addHeader("Authorization",AuthTokenProvider.getToken(role))
 				   .addFilter(new SensitiveDataFilter())
+				   .addFilter(new AllureRestAssured())
 				   .build();
 				   
 				   return request;
 	}
 	
+	@Step("Setting up the BaseURI, Content Type as Application/JSON and attaching the SensitiveData filter for a role and attaching payload")
 	public static RequestSpecification requestSpecWithAuth(Role role, Object payload)
 	{
 		RequestSpecification request = new RequestSpecBuilder()
@@ -92,12 +102,13 @@ public class SpecUtil {
 				   .addHeader("Authorization",AuthTokenProvider.getToken(role))
 				   .setBody(payload)
 				   .addFilter(new SensitiveDataFilter())
+				   .addFilter(new AllureRestAssured())
 				   .build();
 				   
 				   return request;
 	}
 	
-	
+	@Step("Expecting the response to have Content type as Application/Json and Response Time less than 1000 ms and statuc code")
 	public static ResponseSpecification responseSpec_JSON(int statusCode)
 	{
 		ResponseSpecification responseSpecification =new ResponseSpecBuilder()
@@ -110,6 +121,8 @@ public class SpecUtil {
 		
 	}
 	
+	
+	@Step("Expecting the response to have Content type as Text and Response Time less than 1000 ms and statuc code")
 	public static ResponseSpecification responseSpec_TEXT(int statusCode)
 	{
 		ResponseSpecification responseSpecification =new ResponseSpecBuilder()
