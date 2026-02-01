@@ -1,5 +1,7 @@
 package com.api.retry;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.testng.IRetryAnalyzer;
 import org.testng.ITestResult;
 
@@ -10,11 +12,18 @@ public class RetryAnalyzer implements IRetryAnalyzer
 	
 	private int count = 1;
 	
+	private static Logger LOGGER = LogManager.getLogger(RetryAnalyzer.class);
+	
 	@Override
 	public boolean retry(ITestResult result) {
 		
+		LOGGER.info("Checking if the {} test can be re executed",result.getMethod().getMethodName());
+		
 		if(count<=MAX_ATTEMPTS)
 		{
+			LOGGER.warn("Executing the {} test, Current Attempt: {} / {}, REASON {}",result.getName(),count,MAX_ATTEMPTS
+					,result.getThrowable().getMessage());
+			
 			count++;
 			return true;
 		}
