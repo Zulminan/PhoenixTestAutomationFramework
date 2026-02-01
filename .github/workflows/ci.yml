@@ -1,5 +1,8 @@
 name: Phoenix Test Automation Workflow
 
+permissions:
+  contents: write 
+
 on:
   push:
     branches: [ "master" ]
@@ -84,7 +87,7 @@ jobs:
         mvn allure:report
 
     - name: Creating github page branch
-      if: always()
+      if: github.event_name == 'push'
       uses: peaceiris/actions-gh-pages@v4.0.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
