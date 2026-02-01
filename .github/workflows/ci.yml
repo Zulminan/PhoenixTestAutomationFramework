@@ -64,22 +64,31 @@ jobs:
         echo "DB_USER_NAME length: ${#DB_USER_NAME}"
         echo "DB_PASSWORD length: ${#DB_PASSWORD}"
 
-- name: Default Values For Execution
-  id: default
-  run: |
-    echo "suiteXmlFile=${{ github.event.inputs.suiteXmlFile || 'testng.xml' }}" >> $GITHUB_OUTPUT
-    echo "env=${{ github.event.inputs.env || 'qa' }}" >> $GITHUB_OUTPUT
+    - name: Default Values For Execution
+      id: default
+      run: |
+       echo "suiteXmlFile=${{ github.event.inputs.suiteXmlFile || 'testng.xml' }}" >> $GITHUB_OUTPUT
+       echo "env=${{ github.event.inputs.env || 'qa' }}" >> $GITHUB_OUTPUT
 
-
-    # -------------------------------------------------------
-    # EXECUTE TEST AUTOMATION FRAMEWORK
-    # -------------------------------------------------------
     - name: Execute Test Automation Framework
       run: |
         echo "Running Maven Tests..."
         mvn clean test \
           -DsuiteXmlFile="${{ steps.default.outputs.suiteXmlFile }}" \
           -Denv="${{ steps.default.outputs.env }}"
+
+    - name: Generating Allure Report
+      if: always()
+      run: |
+        echo "Generating Allure Report..."
+        mvn allure:report
+
+    - name: Creating github page branch
+      if: always()
+      uses: peaceiris/actions-gh-pages@v4.0.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: target/site/allure-maven-plugin
 
     # -------------------------------------------------------
     # UPLOAD REPORTS
