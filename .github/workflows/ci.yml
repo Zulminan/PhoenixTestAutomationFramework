@@ -87,7 +87,7 @@ jobs:
         mvn allure:report
 
     - name: Creating github page branch
-      if: github.event_name == 'push'
+      if: always()
       uses: peaceiris/actions-gh-pages@v4.0.0
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
