@@ -8,3 +8,4 @@ src/test/resources/testData/.DS_Store
 /logs/
 .allure/
 .DS_Store
+/allure-results
